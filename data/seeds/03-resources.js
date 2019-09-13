@@ -1,6 +1,6 @@
 exports.seed = function(knex, promise)
 {
-    return knex('tasks')
+    return knex('resources')
     .insert(
         [
             {

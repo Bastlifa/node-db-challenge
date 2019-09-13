@@ -5,6 +5,8 @@ exports.up = function(knex) {
         {
             tbl.increments()
             tbl.string('name').notNullable()
+            tbl.string('description')
+            tbl.boolean('completed')
         })
         .createTable('tasks', tbl =>
         {
@@ -18,6 +20,7 @@ exports.up = function(knex) {
                 .onUpdate('CASCADE')
             tbl.string('description').notNullable()
             tbl.string('notes')
+            tbl.boolean('completed')
         })
         .createTable('resources', tbl =>
         {
