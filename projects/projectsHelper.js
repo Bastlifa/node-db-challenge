@@ -3,7 +3,7 @@ const db = require('../data/db-config')
 module.exports =
 {
     findProjects,
-    // findProjectById,
+    findProjectById,
     // addProject,
     // findResources,
     // findResourceById,
@@ -16,4 +16,13 @@ function findProjects()
 {
     return db('projects')
         .then(projects => projects)
+}
+
+function findProjectById(id)
+{
+    return findProjects()
+        .then(projects =>
+            {
+                return projects.filter(proj => proj.id === Number(id))[0]
+            })
 }

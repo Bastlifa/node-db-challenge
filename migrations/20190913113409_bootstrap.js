@@ -6,7 +6,7 @@ exports.up = function(knex) {
             tbl.increments()
             tbl.string('name').notNullable()
             tbl.string('description')
-            tbl.boolean('completed')
+            tbl.boolean('completed').notNullable().defaultTo(0)
         })
         .createTable('tasks', tbl =>
         {
@@ -20,12 +20,12 @@ exports.up = function(knex) {
                 .onUpdate('CASCADE')
             tbl.string('description').notNullable()
             tbl.string('notes')
-            tbl.boolean('completed')
+            tbl.boolean('completed').notNullable().defaultTo(0)
         })
         .createTable('resources', tbl =>
         {
             tbl.increments()
-            tbl.string('name').notNullable()
+            tbl.string('name').notNullable().unique()
             tbl.string('description')
         })
         .createTable('projects_resources', tbl =>

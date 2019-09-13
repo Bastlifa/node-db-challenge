@@ -6,16 +6,13 @@ exports.seed = function(knex, promise)
             {
                 name: 'The Sprint Challenge',
                 description: 'Get it done in 3 hours.',
-                completed: 0
             },
             {
                 name: 'Clean the House',
-                completed: 0
             },
             {
                 name: 'Learn Data Structures',
                 description: 'Prepare for cs modules by learning some data structures.',
-                completed: 0
             }
         ])
 }
