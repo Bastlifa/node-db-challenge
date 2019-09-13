@@ -9,6 +9,13 @@ exports.up = function(knex) {
         .createTable('tasks', tbl =>
         {
             tbl.increments()
+            tbl
+                .integer('project_id')
+                .notNullable()
+                .references('id')
+                .inTable('projects')
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE')
             tbl.string('description').notNullable()
             tbl.string('notes')
         })
