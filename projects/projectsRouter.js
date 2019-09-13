@@ -29,6 +29,7 @@ router.get('/:id', (req, res) =>
                 }
                 else
                 {
+                    console.log(response)
                     res.status(404).json({ errorMessage: "Bad project id" })
                 }
             })
