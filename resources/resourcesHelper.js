@@ -10,7 +10,7 @@ module.exports =
 function findResources()
 {
     return db('resources')
-        .then(projects => projects)
+        .then(resources => resources)
 }
 
 function findResourceById(id)
