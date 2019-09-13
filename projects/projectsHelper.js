@@ -4,7 +4,7 @@ module.exports =
 {
     findProjects,
     findProjectById,
-    // addProject,
+    addProject,
     // findResources,
     // findResourceById,
     // addResource,
@@ -25,4 +25,14 @@ function findProjectById(id)
             {
                 return projects.filter(proj => proj.id === Number(id))[0]
             })
+}
+
+function addProject(project)
+{
+    return db('projects')
+        .insert(project)
+            .then(newProjectId =>
+                {
+                    return findProjectById(newProjectId[0])
+                })
 }

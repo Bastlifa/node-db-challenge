@@ -29,14 +29,35 @@ router.get('/:id', (req, res) =>
                 }
                 else
                 {
-                    res.status(404).json({ errorMessage: "" })
+                    res.status(404).json({ errorMessage: "Bad project id" })
                 }
             })
         .catch(err =>
             {
                 console.log(err)
-                res.status(500).json({ errorMessage: `Could not get ` })
+                res.status(500).json({ errorMessage: `Could not get Project` })
             })
+})
+
+router.post('/', (req, res) =>
+{
+    if(!req.body.name)
+    {
+        res.status(400).json({ errorMessage: "Please provide project name" })
+    }
+    else
+    {
+        projects.addProject(req.body)
+            .then(response =>
+                {
+                    responseTF = response.completed === 0 ? {...response, completed: false} :{...response, completed: true}
+                    res.status(201).json(responseTF)
+                })
+            .catch(error =>
+                {
+                    res.status(500).json({ errorMessage: `Could not add project` })
+                })
+    }
 })
 
 module.exports = router
