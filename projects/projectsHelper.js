@@ -27,23 +27,23 @@ function findProjects()
 //             })
 // }
 
-function findProjectById(id)
-{
-    return db('projects as p')
-        .select('*')
-        .where({id})
-        .first()
-            .then(proj => 
-                {
-                    return findProjectsTasks(id)
-                        .then(tasks =>
-                            {
-                                let retProj = {...proj, tasks: tasks}
-                                return retProj
-                            })
+// function findProjectById(id)
+// {
+//     return db('projects as p')
+//         .select('*')
+//         .where({id})
+//         .first()
+//             .then(proj => 
+//                 {
+//                     return findProjectsTasks(id)
+//                         .then(tasks =>
+//                             {
+//                                 let retProj = {...proj, tasks: tasks}
+//                                 return retProj
+//                             })
                     
-                })
-}
+//                 })
+// }
 
 function findProjectsTasks(id)
 {
@@ -51,6 +51,21 @@ function findProjectsTasks(id)
         .select('t.id', 't.description', 't.notes', 't.completed')
         .where({'t.project_id': id})
             .then (tasks => tasks)
+}
+
+function findProjectById(id)
+{
+    return Promise.all([
+        db('projects as p')
+        .select('*')
+        .where({id})
+        .first(),
+        findProjectsTasks(id)
+    ])
+    .then (([proj, tasks]) =>
+    {
+        return {...proj, tasks}
+    })
 }
 
 function addProject(project)
