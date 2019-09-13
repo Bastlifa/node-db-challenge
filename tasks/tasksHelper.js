@@ -26,7 +26,7 @@ function findTaskById(id)
                 })
 }
 
-function addTask(resource)
+function addTask(task)
 {
     return db('tasks')
         .insert(task)
